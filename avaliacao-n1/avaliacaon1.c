@@ -1,37 +1,112 @@
-//ThiagoUlloa_MatheusMacedo
+/* -------------------------------------------------------*
+ * FATEC-São Caetano do Sul Estrutura de Dados     *
+ *                                     Avaliação N1 - Parte I       *
+ * Objetivo: Controlar Estoque de produtos            *
+ *                                                                              *
+ * Autores: <Thiago Ulloa & Matheus Macedo>          *
+ *                                                   Data:02/04/2024*
+ *------------------------------------------------------*
+ */
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
-    int codigo;
+typedef struct Produto {
+    int id;
     char nome[50];
-    float preco;
-    int estoque;
+    int quantidade;
+    struct Produto *prox;
 } Produto;
 
-void cadastroProduto(Produto *produtos, int *numProdutos);
-void buscaProduto(Produto *produtos, int numProdutos, int codigo);
-void abaixaEstoque(Produto *produtos, int numProdutos, int codigo, int quantidade);
+void cadastrarProduto(Produto **estoque);
+Produto *buscarProduto(Produto *estoque, int id);
+void baixarProduto(Produto **estoque, int id, int quantidade);
+
 
 int main() {
-    Produto produtos[100];
-    int numProdutos = 0;
+    Produto *estoque = NULL;
+    int opcao, id, quantidade;
 
-    cadastroProduto(produtos, &numProdutos);
-    buscaProduto(produtos, numProdutos, 1234);
-    abaixaEstoque(produtos, numProdutos, 1234, 5);
+    do {
+        printf("\n1. Cadastrar produto\n");
+        printf("2. Buscar produto\n");
+        printf("3. Baixar produto\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch(opcao) {
+            case 1:
+                cadastrarProduto(&estoque);
+                break;
+            case 2:
+                printf("Digite o ID do produto: ");
+                scanf("%d", &id);
+                Produto *p = buscarProduto(estoque, id);
+                if (p != NULL)
+                    printf("Produto encontrado: %s\n", p->nome);
+                else
+                    printf("Produto nao encontrado.\n");
+                break;
+            case 3:
+                printf("Digite o ID do produto: ");
+                scanf("%d", &id);
+                printf("Digite a quantidade a ser baixada: ");
+                scanf("%d", &quantidade);
+                baixarProduto(&estoque, id, quantidade);
+                break;
+            
+            default:
+                printf("Opcao invalida.\n");
+        }
+    } while (opcao != 4);
 
     return 0;
 }
 
-void cadastroProduto(Produto *produtos, int *numProdutos) {
+void cadastrarProduto(Produto **estoque) {
+    Produto *novoProduto = (Produto*)malloc(sizeof(Produto));
+    if (novoProduto == NULL) {
+        printf("Erro ao alocar memoria.\n");
+        return;
+    }
 
+    printf("Digite o ID do produto: ");
+    scanf("%d", &novoProduto->id);
+    printf("Digite o nome do produto: ");
+    scanf("%s", novoProduto->nome);
+    printf("Digite a quantidade em estoque: ");
+    scanf("%d", &novoProduto->quantidade);
+
+    novoProduto->prox = *estoque;
+    *estoque = novoProduto;
+
+    printf("Produto cadastrado com sucesso.\n");
 }
 
-void buscaProduto(Produto *produtos, int numProdutos, int codigo) {
+Produto *buscarProduto(Produto *estoque, int id) {
+    Produto *atual = estoque;
+    while (atual != NULL) {
+        if (atual->id == id)
+            return atual;
+        atual = atual->prox;
+    }
+    return NULL;
 }
 
-void abaixaEstoque(Produto *produtos, int numProdutos, int codigo, int quantidade) {
+void baixarProduto(Produto **estoque, int id, int quantidade) {
+    Produto *produto = buscarProduto(*estoque, id);
+    if (produto != NULL) {
+        if (produto->quantidade >= quantidade) {
+            produto->quantidade -= quantidade;
+            printf("Baixa de estoque realizada com sucesso.\n");
+        } else {
+            printf("Quantidade em estoque insuficiente.\n");
+        }
+    } else {
+        printf("Produto nao encontrado.\n");
+    }
 }
