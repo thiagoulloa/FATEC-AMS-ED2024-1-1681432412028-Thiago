@@ -1,9 +1,11 @@
 /* ----------------------------------------------------------------**
  * FATEC-São Caetano do Sul Estrutura de Dados *
  * Atividade B3-1-Cálculo tempo execuçao-Insertion Sort *
- * 	Prof Veríssimo * * Objetivo: Tempo de execução *
+ * Prof Veríssimo * * Objetivo: Tempo de execução *
  * Autor: Thiago André Ulloa * * Data:13/08/2024 *
  * --------------------------------------------------------------*/
+
+// 10t(n) + 10t(n²) + 2t
 
 #include <stdio.h>
                                                     
