@@ -6,7 +6,7 @@
 
 ### Caso 1: x ∈ A
 
-``` 
+```javascript
 function buscaLinearEmOrdemCaso1(A, n, x) {
     let i = 0;
     while (i < n && x > A[i]) {
@@ -23,7 +23,7 @@ function buscaLinearEmOrdemCaso1(A, n, x) {
 
 ### Caso 2: x = A[1]
 
-``` 
+```javascript
 function buscaLinearEmOrdemCaso2(A, n, x) {
     let i = 0;
     while (i < n && x > A[i]) {
@@ -40,7 +40,7 @@ function buscaLinearEmOrdemCaso2(A, n, x) {
 
 ### Caso 3: x = A[n]
 
-```
+```javascript
 function buscaLinearEmOrdemCaso3(A, n, x) {
     let i = 0;
     while (i < n && x > A[i]) {
@@ -57,7 +57,7 @@ function buscaLinearEmOrdemCaso3(A, n, x) {
 
 ### Caso 4: x ∉ A
 
-```
+```javascript
 function buscaLinearEmOrdemCaso4(A, n, x) {
     let i = 0;
     while (i < n && x > A[i]) {
