@@ -18,8 +18,6 @@ function buscaLinearEmOrdemCaso1(A, n, x) {
     return -1;
 }
 
-const A1 = [1, 3, 5, 7, 9];
-const x1 = 3;
 ```
 
 
@@ -37,8 +35,6 @@ function buscaLinearEmOrdemCaso2(A, n, x) {
     return -1;
 }
 
-const A2 = [1, 3, 5, 7, 9];
-const x2 = A2[0];]
 ```
 
 
@@ -56,9 +52,6 @@ function buscaLinearEmOrdemCaso3(A, n, x) {
     return -1;
 }
 
-// Teste para x = A[n]
-const A3 = [1, 3, 5, 7, 9];
-const x3 = A3[A3.length - 1];
 ```
 
 
@@ -76,6 +69,4 @@ function buscaLinearEmOrdemCaso4(A, n, x) {
     return -1;
 }
 
-const A4 = [1, 3, 5, 7, 9];
-const x4 = -5;
 ```
