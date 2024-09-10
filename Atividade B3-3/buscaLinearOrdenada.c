@@ -1,3 +1,11 @@
+/* -------------------------------------------
+Fatec São Caetano do Sul - Estrutura de Dados
+Professor: Carlos Veríssimo
+Proposta: Implementação de algoritmos de busca
+Autor: Thiago Ulloa
+Data: 09/09/2024
+------------------------------------------- */
+
 #include <stdio.h>
 
 int buscaLinearOrdenada(int arr[], int n, int chave) {
