@@ -64,7 +64,7 @@ for bloco in &self.cadeia {
 ```
 
 
-#### 3. Validação da Blockchain
+#### 3. Validação da Blockchain com iteração:
 
 A blockchain é validada verificando-se se o hash de cada bloco corresponde ao hash calculado e se o hash anterior de cada bloco corresponde ao hash do bloco anterior.
 
@@ -85,4 +85,58 @@ fn valida_blockchain_iterativa(&self) -> bool {
     return true;
 }
 ```
+
+#### 3. Validação da Blockchain com recursividade
+A blockchain é validada verificando-se se o hash de cada bloco corresponde ao hash calculado e se o hash anterior de cada bloco corresponde ao hash do bloco anterior.
+
+Recursividade: A função valida_blockchain_recursiva percorre a cadeia de blocos de forma recursiva, comparando o bloco atual com o anterior.
+
+```rust
+Copy code
+fn valida_blockchain_recursiva(&self, indice: usize) -> bool {
+    if indice == 0 {
+        return true;
+    }
+
+    let bloco_atual = &self.cadeia[indice];
+    let bloco_anterior = &self.cadeia[indice - 1];
+
+    if bloco_atual.hash != bloco_atual.calcula_hash() {
+        return false;
+    }
+
+    if bloco_atual.hash_anterior != bloco_anterior.hash {
+        return false;
+    }
+    self.valida_blockchain_recursiva(indice - 1)
+}
+```
+
+## Análise Assintótica: Iteração vs. Recursividade na Validação da Blockchain
+
+### Iteração
+
+**Vantagem**: 
+- Direto e eficiente: O loop for percorre a cadeia de forma linear, realizando um número constante de operações por bloco.
+- Menor sobrecarga: Não há chamadas de função recursivas, o que reduz a sobrecarga da pilha.
+
+**Desvantagem**:
+- Menos elegante: Para problemas recursivos, a solução iterativa pode ser menos intuitiva.
+
+**Análise:**
+A complexidade de tempo da iteração é O(n), onde n é o número de blocos na blockchain. Isso significa que o tempo de execução cresce linearmente com o tamanho da entrada.
+
+
+### Recursividade
+
+**Vantagem**: 
+- Elegante: A solução recursiva reflete a natureza hierárquica da blockchain.
+- Mais concisa: A lógica pode ser mais concisa em alguns casos.
+
+**Desvantagem**:
+- Sobrecarga de chamadas: Cada chamada recursiva consome memória da pilha.
+- Menos eficiente: A chamada de função recursiva tem um custo adicional.
+
+**Análise:**
+A complexidade de tempo da recursividade também é O(n), pois cada bloco é visitado apenas uma vez. No entanto, a constante implícita na notação O pode ser maior devido às chamadas de função recursivas.
 
