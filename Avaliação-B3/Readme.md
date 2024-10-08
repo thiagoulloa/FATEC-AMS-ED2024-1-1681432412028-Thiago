@@ -229,6 +229,15 @@ No código iterativo, a validação da blockchain é feita através da função 
 
 Portanto, a versão *iterativa* é mais *eficiente* em termos de *espaço* (memória), especialmente em blockchains grandes, onde o espaço de pilha poderia ser um gargalo no algoritmo recursivo.
 
+| Função                  | Descrição                                                                                                      | Complexidade de Tempo | Complexidade de Espaço |
+|-------------------------|----------------------------------------------------------------------------------------------------------------|-----------------------|------------------------|
+| `mine_block`            | Minera um novo bloco encontrando o hash válido baseado na dificuldade. Calcula o hash repetidamente até que a condição seja atendida. | O(2^d), onde d é a dificuldade, pois é necessário tentar várias vezes até encontrar um hash válido. | O(1), pois usa apenas variáveis locais para manter o bloco atual. |
+| `calculate_hash`        | Calcula o hash de um bloco baseado nos dados do bloco.                                                          | O(1), já que o tamanho do bloco e seus campos são fixos e pequenos. | O(1), pois o hash é calculado em tempo constante. |
+| `is_valid_hash`         | Verifica se o hash do bloco começa com o número de zeros exigido pela dificuldade.                              | O(d), onde d é a dificuldade, já que compara os primeiros d caracteres do hash. | O(1), pois a verificação do hash requer espaço constante. |
+| `create_genesis_block`  | Cria o bloco gênesis da blockchain.                                                                             | O(1), pois a criação do bloco envolve operações simples. | O(1), pois é necessário apenas espaço para o bloco gênesis. |
+| `current_timestamp`     | Obtém o timestamp atual do sistema.                                                                             | O(1), pois apenas acessa o relógio do sistema. | O(1), pois o timestamp é armazenado em uma variável simples. |
+| `display`               | Exibe todos os blocos da blockchain.                                                                            | O(n), onde n é o número de blocos, já que percorre a lista de blocos. | O(1), pois apenas utiliza variáveis locais para percorrer a lista. |
+
 ---
 
 **Link para a apresentação:** [Canva](https://www.canva.com/design/DAGSQjGojX4/ea6rMgsWqI3yVJyqBWWXeg/edit?utm_content=DAGSQjGojX4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
