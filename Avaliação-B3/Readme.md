@@ -198,4 +198,37 @@ A complexidade de tempo da recursividade também é O(n), pois cada bloco é vis
 
 ---
 
+Para analisar e determinar a performance de ambos os códigos (um usando recursividade e outro usando iteração) através da notação Big O, precisamos avaliar o comportamento dos algoritmos de validação de blockchain.
+
+### 1. *Cenário Recursivo:*
+
+No código recursivo, a validação da blockchain é feita através da função validate_block_recursively. A função é chamada recursivamente para cada bloco, verificando a integridade entre o bloco atual e o próximo. Cada chamada à função consome espaço adicional na pilha de chamadas do sistema.
+
+- *Espaço*: A recursão usa espaço de pilha proporcional à profundidade da lista (número de blocos), ou seja, O(n) em espaço, onde n é o número de blocos na blockchain.
+- *Tempo*: Cada bloco é visitado uma vez e cada comparação e cálculo de hash tem um custo constante, então o tempo é O(n), onde n é o número de blocos.
+
+*Complexidade recursiva*:
+- *Tempo*: O(n)
+- *Espaço*: O(n) (devido ao uso de memória adicional para armazenar as chamadas recursivas na pilha).
+
+### 2. *Cenário Iterativo:*
+
+No código iterativo, a validação da blockchain é feita através da função validate_chain_iteratively. Aqui, o algoritmo percorre a lista de blocos usando um loop while. O espaço de memória consumido é constante, pois não há chamadas recursivas aninhadas, e o código visita cada bloco uma vez.
+
+- *Espaço*: O algoritmo não usa memória extra além de variáveis locais e ponteiros para os blocos, então o espaço é O(1).
+- *Tempo*: Assim como na versão recursiva, cada bloco é visitado uma vez e as operações de comparação e cálculo de hash têm custo constante, então o tempo também é O(n).
+
+*Complexidade iterativa*:
+- *Tempo*: O(n)
+- *Espaço*: O(1) (constante, já que não depende do número de blocos).
+
+### *Conclusão*:
+
+- *Tempo*: Ambos os algoritmos têm a mesma complexidade de tempo, O(n), porque ambos percorrem a lista de blocos uma vez e fazem comparações constantes.
+- *Espaço*: O algoritmo iterativo é mais eficiente em termos de espaço, com O(1), enquanto o recursivo consome O(n) devido à pilha de chamadas.
+
+Portanto, a versão *iterativa* é mais *eficiente* em termos de *espaço* (memória), especialmente em blockchains grandes, onde o espaço de pilha poderia ser um gargalo no algoritmo recursivo.
+
+---
+
 **Link para a apresentação:** [Canva](https://www.canva.com/design/DAGSQjGojX4/ea6rMgsWqI3yVJyqBWWXeg/edit?utm_content=DAGSQjGojX4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
